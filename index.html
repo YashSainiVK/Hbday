@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday!</title>
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Config first, then main JS -->
+    <script src="config.js"></script>
     <script defer src="app.js"></script>
 </head>
 <body>
@@ -41,16 +46,7 @@
     <section id="messages">
         <h2>Messages for You</h2>
         <div class="message-container">
-            <!-- Individual messages -->
-            <div class="message">
-                <p>Hope your day is filled with love and laughter! 💖</p>
-            </div>
-            <div class="message">
-                <p>May all your wishes come true! ✨</p>
-            </div>
-            <div class="message">
-                <p>Have a fantastic year ahead! 🎂</p>
-            </div>
+            <!-- Messages generated dynamically via app.js -->
         </div>
     </section>
 
@@ -80,69 +76,5 @@
             <source src="music/happy_birthday.mp3" type="audio/mpeg">
         </audio>
     </footer>
-    <!-- Shooting Star & Background Canvas Script -->
-    <script>
-        const canvas = document.getElementById('backgroundCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const stars = [];
-
-        function createStar() {
-            return {
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height / 2,
-                size: Math.random() * 2 + 1,
-                speed: Math.random() * 0.5 + 0.2
-            };
-        }
-
-        for (let i = 0; i < 80; i++) stars.push(createStar());
-
-        function animateStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            stars.forEach(star => {
-                star.y += star.speed;
-                if (star.y > canvas.height) {
-                    Object.assign(star, createStar());
-                }
-                ctx.fillStyle = 'white';
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            requestAnimationFrame(animateStars);
-        }
-
-        animateStars();
-
-        // Optional shooting star
-        function shootingStar() {
-            const startX = Math.random() * canvas.width;
-            const startY = Math.random() * canvas.height / 2;
-            const length = Math.random() * 150 + 50;
-            const speed = Math.random() * 5 + 5;
-
-            let progress = 0;
-
-            function animate() {
-                ctx.strokeStyle = 'white';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(startX, startY);
-                ctx.lineTo(startX + progress, startY + progress / 2);
-                ctx.stroke();
-                progress += speed;
-                if (progress < length) requestAnimationFrame(animate);
-            }
-
-            animate();
-        }
-
-        setInterval(() => {
-            if (Math.random() < 0.01) shootingStar(); // rarer shooting star
-        }, 100);
-    </script>
 </body>
 </html>
