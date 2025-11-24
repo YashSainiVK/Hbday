@@ -1,0 +1,45 @@
+🎉 HOW TO OPEN YOUR BIRTHDAY WEBSITE 🎉
+
+METHOD 1: Double-Click (Easiest)
+================================
+1. Go to your project folder: C:\Users\Yash\OneDrive\Desktop\mission
+2. Find the file named "index.html"
+3. Double-click on "index.html"
+4. It will open in your default web browser!
+
+METHOD 2: Right-Click
+=====================
+1. Right-click on "index.html"
+2. Select "Open with" → Choose your web browser (Chrome, Edge, Firefox, etc.)
+
+METHOD 3: Drag & Drop
+=====================
+1. Open your web browser
+2. Drag the "index.html" file into the browser window
+3. The website will load!
+
+METHOD 4: From Browser
+=======================
+1. Open your web browser
+2. Press Ctrl+O (or Cmd+O on Mac)
+3. Navigate to: C:\Users\Yash\OneDrive\Desktop\mission
+4. Select "index.html" and click "Open"
+
+📝 QUICK FILE LOCATION:
+C:\Users\Yash\OneDrive\Desktop\mission\index.html
+
+💡 TIP: You can bookmark this file in your browser for easy access!
+
+🔒 BIRTHDAY LOCK FEATURE:
+=========================
+The website has a lock feature that prevents access to pages until the birthday.
+Currently DISABLED for testing.
+
+To enable it:
+1. Open: assets/js/app.js
+2. Find: const BIRTHDAY_LOCK_ENABLED = false;
+3. Change to: const BIRTHDAY_LOCK_ENABLED = true;
+4. Save and refresh the page
+
+When enabled, only the countdown timer will be visible until the birthday date!
+
