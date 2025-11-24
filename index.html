@@ -1,337 +1,83 @@
-<!-- FILE: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday! 💜✨</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+    <!-- Config first, then main JS -->
+    <script src="./assets/js/config.js"></script>
+    <script defer src="./assets/js/app.js"></script>
 </head>
 <body>
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-content">
-      <p class="preloader-text">Loading a little love… ✨</p>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
     </div>
-  </div>
-  
-  <!-- Custom Cursor -->
-  <div class="custom-cursor"></div>
-  <div class="cursor-trail"></div>
-  
-  <!-- Floating Compliments -->
-  <div class="floating-compliments" id="floatingCompliments"></div>
-  
-  <div class="grain-overlay"></div>
-  <div class="floating-hearts"></div>
-  <div class="floating-stars"></div>
-  <div class="sparkles" id="sparkles"></div>
-  <div class="pink-glow-overlay"></div>
-  <div class="micro-particles" id="microParticles"></div>
-  <div class="snowfall-overlay" id="snowfallOverlay"></div>
-  <div class="shooting-stars" id="shootingStars"></div>
-  <div class="birthday-animations" id="birthdayAnimations"></div>
-  <div class="signature-footer">Made with 💖 by Yash</div>
-  <div class="birthday-lock-message" id="birthdayLockMessage" style="display: none;"></div>
-  
-  <!-- Custom Modal/Popup -->
-  <div class="custom-modal" id="customModal">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close">&times;</button>
-      <div class="modal-body" id="modalBody"></div>
-    </div>
-  </div>
 
-  <!-- Navigation Progress -->
-  <div class="nav-progress">
-    <div class="progress-bar"></div>
-  </div>
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#messages">Messages</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Main Container -->
-  <div class="sections-container">
-    
-    <!-- Section 1: Home/Hero -->
-    <section class="page-section active" id="section-home">
-      <div class="hero-new">
-        <div class="hero-background" id="heroBackground">
-          <div class="birthday-element">🎈</div>
-          <div class="birthday-element">🎁</div>
-          <div class="birthday-element">🎊</div>
-          <div class="birthday-element">🎉</div>
+    <!-- Home Section -->
+    <section id="home" style="background-image: url('assets/images/birthday-doodle.jpg'); background-size: cover; background-position: center;">
+        <div class="home-content">
+            <h1>🎉 Happy Birthday! 🎉</h1>
+            <p>Welcome to your special birthday website!</p>
+            <button id="start-btn">Enter</button>
         </div>
-        <div class="hero-content">
-          <div class="hero-text-container">
-            <h1 class="hero-main-title" id="heroMainTitle">Happy Birthday!</h1>
-            <p class="hero-name" id="heroName">Beautiful You</p>
-            <p class="hero-subtitle-text" id="heroSubtitleText">Today marks another beautiful chapter in your incredible story</p>
-            <div class="hero-countdown-text" id="countdownText"></div>
-            <div class="hero-interactive-elements">
-              <div class="floating-heart-icon">💜</div>
-              <div class="floating-heart-icon">💖</div>
-              <div class="floating-heart-icon">💕</div>
-            </div>
-            <div class="hero-cta" id="heroCtaSection">
-              <div class="cta-button" id="ctaButton" onclick="handleCtaClick()">
-                <span>Begin Journey 💜</span>
-                <span class="cta-arrow">→</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-particles" id="heroParticles"></div>
-      </div>
+
+        <!-- Background Canvas for stars -->
+        <canvas id="backgroundCanvas"></canvas>
     </section>
 
-    <!-- Section 2: Gallery -->
-    <section class="page-section" id="section-gallery">
-      <div class="section-content">
-        <h2 class="section-title">💖 Our Memories 💖</h2>
-        <p class="section-subtitle">Scroll through our beautiful moments together</p>
-        <div class="gallery-vertical" id="galleryContainer">
-          <!-- Photos will be loaded here -->
+    <!-- Messages Section -->
+    <section id="messages">
+        <h2>Messages for You</h2>
+        <div class="message-container">
+            <!-- Messages will be dynamically generated via app.js -->
         </div>
-        <button class="btn btn-next" onclick="nextSection()">Next ➜</button>
-      </div>
     </section>
 
-    <!-- Section 3: Letter -->
-    <section class="page-section" id="section-letter">
-      <div class="section-content">
-        <h2 class="section-title">💌 A Letter For You 💌</h2>
-        <div class="letter-display-container">
-          <div class="letter-folded" id="letterFolded">
-            <div class="letter-folded-content">
-              <p>Click to open 💌</p>
-            </div>
-          </div>
-          <div class="handwritten-letter letter-unfolded" id="letterDisplay" style="display: none;">
-            <!-- Letter content will be loaded from config -->
-          </div>
+    <!-- Games Section -->
+    <section id="games">
+        <h2>Mini Games</h2>
+        <div class="games-container">
+            <button class="game-btn" onclick="startGame('catchHearts')">Catch the Hearts</button>
+            <button class="game-btn" onclick="startGame('birthdayQuiz')">Birthday Quiz</button>
         </div>
-        <button class="btn btn-next" onclick="nextSection()">Next ➜</button>
-      </div>
     </section>
 
-    <!-- Section 4: Games -->
-    <section class="page-section" id="section-games">
-      <div class="section-content">
-        <h2 class="section-title">🎮 Fun Games 🎮</h2>
-        
-        <!-- Memory Game -->
-        <div class="game-card">
-          <h3>🧠 Memory Match</h3>
-          <p>Match pairs of photos! Click cards to flip them.</p>
-          <div class="game-stats" id="memoryStats">Moves: 0 | Time: 0s | Matched: 0/0</div>
-          <div class="memory-grid" id="memoryGrid"></div>
-          <button class="btn btn-small" onclick="resetMemoryGame()">Reset Game</button>
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2>Birthday Memories</h2>
+        <div class="gallery-container">
+            <img src="assets/images/photo1.jpg" alt="Memory 1">
+            <img src="assets/images/photo2.jpg" alt="Memory 2">
+            <img src="assets/images/photo3.jpg" alt="Memory 3">
         </div>
-
-        <!-- Quiz -->
-        <div class="game-card">
-          <h3>💝 Love Quiz</h3>
-          <p style="margin-bottom: 1rem;">Answer these special questions from your heart 💜</p>
-          <div class="quiz-container" id="quizContainer">
-            <!-- Quiz will be loaded here -->
-          </div>
-          <div id="quizAnswersDisplay" style="display: none; margin-top: 2rem;">
-            <h4>Your Answers:</h4>
-            <div id="quizAnswersList"></div>
-            <button class="btn btn-small" onclick="viewQuizAnswers()">View All Answers</button>
-          </div>
-        </div>
-
-        <!-- Drawing -->
-        <div class="game-card">
-          <h3>🎨 Drawing Canvas</h3>
-          <p>Draw something special! Click the color circle to change colors.</p>
-          <p style="background: rgba(192, 132, 252, 0.2); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
-            💡 <strong>Tip:</strong> Take a screenshot of your drawing and share it with me! (Press Windows+Shift+S or Cmd+Shift+4)
-          </p>
-          <div class="drawing-wrapper" style="position: relative; display: flex; align-items: center; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-            <div class="drawing-canvas-container" style="position: relative; display: inline-block;">
-              <canvas class="drawing-canvas" id="drawingCanvas" width="600" height="400"></canvas>
-            </div>
-            <div class="glow-mode-toggle-side" style="position: relative; margin-left: 1rem;">
-              <label class="glow-toggle-label-side">
-                <input type="checkbox" id="glowModeToggle" class="glow-toggle-checkbox">
-                <span class="glow-toggle-slider-side"></span>
-                <span class="glow-toggle-text-side">Glow</span>
-              </label>
-            </div>
-            <div class="canvas-controls">
-              <div class="canvas-tool-group">
-                <label>Tool:</label>
-                <select class="canvas-tool-select" id="canvasTool">
-                  <option value="draw">Draw</option>
-                  <option value="erase">Eraser</option>
-                </select>
-              </div>
-              <div class="canvas-tool-group">
-                <label>Size:</label>
-                <input type="range" id="brushSize" min="2" max="30" value="4" class="brush-size-slider">
-                <span id="brushSizeValue">4px</span>
-              </div>
-              <select class="color-picker-dropdown" id="colorPicker">
-                <option value="#a855f7">Purple</option>
-                <option value="#ec4899">Pink</option>
-                <option value="#f472b6">Rose</option>
-                <option value="#c026d3">Magenta</option>
-                <option value="#9333ea">Deep Purple</option>
-                <option value="#e879f9">Light Magenta</option>
-                <option value="#ef4444">Red</option>
-                <option value="#f97316">Orange</option>
-                <option value="#fbbf24">Yellow</option>
-                <option value="#10b981">Green</option>
-                <option value="#3b82f6">Blue</option>
-                <option value="#6366f1">Indigo</option>
-                <option value="#000000">Black</option>
-                <option value="#ffffff">White</option>
-              </select>
-              <button class="btn btn-small clear-canvas">Clear</button>
-              <button class="btn btn-small btn-secondary save-canvas">Save Drawing</button>
-            </div>
-            <p style="text-align: center; margin-top: 1rem; color: #1e1b4b; font-size: 0.9rem; background: rgba(255, 255, 255, 0.3); padding: 0.8rem; border-radius: 10px;">
-              💡 <strong>Tip:</strong> Draw freely on the canvas! Use the controls above to customize your drawing.
-            </p>
-          </div>
-        </div>
-
-        <!-- Dice Game -->
-        <div class="game-card">
-          <h3>🎲 Roll the Dice</h3>
-          <p>Roll for a surprise prize!</p>
-          <div class="dice-container">
-            <div class="dice-wrapper">
-              <div class="dice" id="dice">
-                <div class="dice-face" id="diceFace">
-                  <div class="dice-dot"></div>
-                </div>
-              </div>
-            </div>
-            <div class="dice-result" id="diceResult"></div>
-            <button class="btn dice-btn" id="diceBtn">Roll the Dice! 🎲</button>
-          </div>
-        </div>
-
-        <!-- Pick a Heart Game -->
-        <div class="game-card">
-          <h3 style="position: relative; display: inline-block;">
-            💕 Pick a Heart
-            <div class="special-heart" id="specialHeart" style="position: absolute; right: -60px; top: 50%; transform: translateY(-50%); font-size: 2rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-family: 'Dancing Script', cursive; cursor: pointer; background: linear-gradient(135deg, #ff9ec5 0%, #ffc0d9 50%, #ffe5f0 100%); border: 3px solid rgba(255, 182, 193, 0.6); border-radius: 20px; box-shadow: 0 8px 25px rgba(255, 182, 193, 0.4); transition: all 0.3s ease;">💖</div>
-          </h3>
-          <p>Click on a heart to reveal a special message!</p>
-          <div class="heart-picker-wrapper">
-            <div class="heart-picker-grid" id="heartPicker">
-              <!-- Hearts will be generated here -->
-            </div>
-          </div>
-          <div class="picker-result" id="pickerResult" style="position: relative;">
-          </div>
-        </div>
-
-        <button class="btn btn-next" onclick="nextSection()">Next ➜</button>
-      </div>
     </section>
 
-    <!-- Section 5: Gift Boxes -->
-    <section class="page-section" id="section-gifts">
-      <div class="section-content">
-        <h2 class="section-title">🎁 Your Gifts 🎁</h2>
-        <p class="section-subtitle">Click on each gift box to reveal your surprise</p>
-        <div class="gift-boxes-container" id="giftBoxesContainer">
-          <!-- Gift boxes will be loaded here -->
-        </div>
-        <button class="btn btn-next" onclick="nextSection()">Next ➜</button>
-      </div>
-    </section>
+    <!-- Footer Section -->
+    <footer>
+        <p>Made with ❤️ for a special birthday</p>
+        <audio id="bg-music" controls loop>
+            <source src="assets/music/happy_birthday.mp3" type="audio/mpeg">
+        </audio>
+    </footer>
 
-    <!-- Section 6: Gift -->
-    <section class="page-section" id="section-gift">
-      <div class="section-content">
-        <h2 class="section-title">🎁 Your Special Gift 🎁</h2>
-        <p class="section-subtitle">Click on the gift box to reveal your surprise!</p>
-        <div class="gift-reveal-container">
-          <div class="gift-box" id="giftBox" role="button" tabindex="0" aria-label="Open gift box">
-            <div class="gift-bow">🎀</div>
-            <div class="gift-ribbon"></div>
-          </div>
-          <div class="gift-content" id="giftContent">
-            <!-- Gift content will appear here -->
-          </div>
-          <div class="gift-messages" id="giftMessages" style="display: none;">
-            <!-- Messages will be loaded here -->
-          </div>
-          <div class="gift-videos" id="giftVideos" style="display: none;">
-            <!-- Videos will be loaded here -->
-          </div>
-        </div>
-        <div class="final-message">
-          <div class="final-message-content">
-            <h2 class="final-title">This Is It 💜</h2>
-            <div class="final-text">
-              <p class="final-paragraph">You've reached the end of this special journey, but this is just the beginning of our story together.</p>
-              <p class="final-paragraph">Thank you for being you, for bringing so much joy into my life, and for making every moment magical.</p>
-              <p class="final-paragraph">Here's to many more adventures, laughs, and beautiful memories together. 💖</p>
-              <p class="final-signature">Forever yours, always 💜</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Final Letter Button - Bottom Right -->
-        <button class="final-letter-btn-fixed" id="finalLetterBtn" onclick="toggleFinalLetter()">💌</button>
-        <div class="final-letter-content-fixed" id="finalLetterContent">
-          <div class="final-letter-text">
-            <p>I know you very well, i know you wanna thank me, how about a video call😆? Obviously, after you get free.</p>
-            <p style="text-align: center; margin-top: 1rem;">~~I know maybe i am asking too much😅~~</p>
-          </div>
-        </div>
-        
-        <button class="btn btn-next" onclick="nextSection()">Back to Start 🔄</button>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- Lightbox for Gallery -->
-  <div class="lightbox">
-    <div class="lightbox-content">
-      <img src="" alt="Gallery photo">
-      <button class="lightbox-close" aria-label="Close lightbox">×</button>
-      <button class="lightbox-prev" aria-label="Previous photo">‹</button>
-      <button class="lightbox-next" aria-label="Next photo">›</button>
-    </div>
-  </div>
-
-  <!-- Floating Music Widget -->
-  <div class="floating-music-widget" id="floatingMusicWidget">
-    <button class="floating-music-btn" id="floatingMusicBtn" onclick="toggleFloatingMusic()">
-      <span class="floating-music-icon" id="floatingMusicIcon">🎵</span>
-    </button>
-  </div>
-
-  <!-- Music Player (Fixed - Available Everywhere) -->
-  <div class="music-player-fixed" id="musicPlayer">
-    <div class="music-player-header">
-      <span>🎵 Music Player</span>
-      <button class="music-toggle" id="musicToggle" onclick="toggleMusicPlayer()">−</button>
-    </div>
-    <div class="music-player-body hidden" id="musicPlayerBody">
-      <div class="music-controls-top">
-        <button class="music-btn play-btn" id="musicPlayBtn" onclick="togglePlayback()" aria-label="Play/Pause">▶</button>
-      </div>
-      <div class="music-track-info">
-        <span id="musicTrackTitle">No track selected</span>
-      </div>
-      <div class="music-playlist-mini" id="musicPlaylistMini">
-        <!-- Tracks will be loaded here -->
-      </div>
-    </div>
-  </div>
-
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/app.js"></script>
+    <!-- Floating Hearts container (created dynamically via JS) -->
+    <div id="hearts-container"></div>
 </body>
 </html>
